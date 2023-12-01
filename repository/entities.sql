@@ -1,0 +1,27 @@
+-- create chatroom table
+CREATE TABLE IF NOT EXISTS chatroom (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- chatroom_user table
+CREATE TABLE IF NOT EXISTS chatroom_user (
+    id SERIAL PRIMARY KEY,
+    chatroom_id INTEGER NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- create message table
+CREATE TABLE IF NOT EXISTS message (
+    id SERIAL PRIMARY KEY,
+    chatroom_id INTEGER NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    message_type VARCHAR(255) NOT NULL, -- text, attachement
+    message TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
